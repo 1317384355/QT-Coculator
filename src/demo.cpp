@@ -217,7 +217,10 @@ void demo::on_btn_equal_clicked()
         // 在 showEdit 中添加 = ，在 inputEdit 中显示结果
         ui->showEdit->insert(inputStr + "=");
         equalBtn();
-        ui->inputEdit->setText(stackStr);
+        if (!stackStr.isEmpty()) // 除 0 会导致 初始化
+        {
+            ui->inputEdit->setText(stackStr);
+        }
 
         // 计算结果为 0 时，会出现可以无限0的情况
         if (stackStr != "0")
